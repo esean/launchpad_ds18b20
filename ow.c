@@ -9,10 +9,6 @@ int A,B,xC,D,E,F,G,H,I,J;
 
 void owInit()
 {
-    // 1-wire pin
-    P1DIR &= ~BIT7;
-    //P1DIR |= BIT7;
-
     // set to standard speed
     SetSpeed(1); 
 }
@@ -54,8 +50,8 @@ void SetSpeed(int standard)
 }
 
 //-----------------------------------------------------------------------------
-// Generate a 1-Wire reset, return 1 if no presence detect was found,
-// return 0 otherwise.
+// Generate a 1-Wire reset, return 1 if presence detect was found,
+// return 0 if no devices pulled bus low.
 // (NOTE: Does not handle alarm presence from DS2404/DS1994)
 //
 int OWTouchReset(void)

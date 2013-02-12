@@ -8,10 +8,16 @@
 int outp(unsigned port, int databyte)
 {
     if (databyte > 0)
-        P1OUT |= BIT7;
+    {
+        // release bus
+        P1DIR &= ~BIT7;
+    }
     else
+    {
+        // drive low
         P1OUT &= ~BIT7;
-    P1DIR |= BIT7;
+        P1DIR |= BIT7;
+    }
     return 0;
 }
 

@@ -1,4 +1,7 @@
 
+#define DBG_ON()  { P2OUT |= BIT5; }
+#define DBG_OFF() { P2OUT &= ~BIT5; }
+
 // send 'databyte' to 'port'
 int outp(unsigned port, int databyte);
 

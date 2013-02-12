@@ -24,10 +24,14 @@ void main(void)
   InitializeClocks();
   owInit();
 
+  // 1-wire pin set as input
+  P1DIR &= ~BIT7;
+
   while(1)
   {
     P1OUT ^= 0x01; // Toggle P1.0 using exclusive-OR
 
+    // returns 1 if presense detect found
     if (OWTouchReset() > 0)
         P1OUT |= BIT6;
     else
