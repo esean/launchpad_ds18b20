@@ -170,3 +170,41 @@ int OWTouchByte(int data)
         }
         return result;
 }
+
+//-----------------------------------------------------------------------------
+// Write a block 1-Wire data bytes and return the sampled result in the same
+// buffer.
+//
+void OWBlock(unsigned char *data, int data_len)
+{
+    int loop;
+
+    for (loop = 0; loop < data_len; loop++)
+    {
+        data[loop] = OWTouchByte(data[loop]);
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Set all devices on 1-Wire to overdrive speed. Return '1' if at least one
+// overdrive capable device is detected.
+//
+int OWOverdriveSkip(unsigned char *data, int data_len)
+{
+    // set the speed to 'standard'
+    SetSpeed(1);
+
+    // reset all devices
+    if (OWTouchReset()) // Reset the 1-Wire bus
+        return 0; // Return if no devices found
+
+    // overdrive skip command
+    OWWriteByte(0x3C);
+
+    // set the speed to 'overdrive'
+    SetSpeed(0);
+
+    // do a 1-Wire reset in 'overdrive' and return presence result
+    return OWTouchReset();
+}
+

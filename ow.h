@@ -6,3 +6,5 @@ int OWReadBit(void);
 void OWWriteByte(int data);
 int OWReadByte(void);
 int OWTouchByte(int data);
+void OWBlock(unsigned char *data, int data_len);
+int OWOverdriveSkip(unsigned char *data, int data_len);
