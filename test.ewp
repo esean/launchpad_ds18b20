@@ -1781,6 +1781,9 @@
   <file>
     <name>$PROJ_DIR$\ow.c</name>
   </file>
+  <file>
+    <name>$PROJ_DIR$\owrc.c</name>
+  </file>
 </project>
 
 

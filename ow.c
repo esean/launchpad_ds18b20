@@ -58,6 +58,8 @@ int OWTouchReset(void)
 {
         int result;
 
+        if (OWReadBit() == 0x00)
+            return 0;
         tickDelay(G);
         outp(PORTADDRESS,0x00); // Drives DQ low
         tickDelay(H);
